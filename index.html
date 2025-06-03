@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Conteo de Publicaciones de Facebook</title>
+    <style>
+        body { font-family: sans-serif; margin: 40px; }
+        input, button { padding: 8px; margin: 5px; }
+    </style>
+</head>
+<body>
+    <h1>Conteo de Publicaciones por Mes</h1>
+    <form method="post">
+        <label>Access Token:</label><br>
+        <input type="text" name="token" size="80" required><br>
+        <label>ID de la Página:</label><br>
+        <input type="text" name="page_id" required><br>
+        <button type="submit">Consultar</button>
+    </form>
+
+    {% if error %}
+        <p style="color: red;">Error: {{ error }}</p>
+    {% endif %}
+
+    {% if result %}
+        <h2>Resultados:</h2>
+        <ul>
+            {% for mes, cantidad in result.items() %}
+                <li><strong>{{ mes }}</strong>: {{ cantidad }} publicaciones</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>
